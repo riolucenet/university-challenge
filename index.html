@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Challenge Score Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <div class="container">
+
+    <!-- 🎯 Page Header -->
+    <header class="page-header">
+      <h1>Rio's University Challenge Score Tracker</h1>
+    </header>
+
+    <!-- 🎨 Theme Toggle Top Right -->
+    <div class="top-controls">
+      <button onclick="toggleColorScheme()" class="theme-toggle">Toggle Theme</button>
+    </div>
+
+    <!-- 🧮 Live Scoring -->
+    <section class="card">
+      <h2>Live Scoring</h2>
+      <div class="score-panel">
+        <div class="score-item">
+          <div class="score-label">Score</div>
+          <div id="current-score" class="score-value">0</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">Question</div>
+          <div id="current-question" class="score-value">1</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">PPQ</div>
+          <div id="points-per-question" class="score-value">0.00</div>
+        </div>
+      </div>
+      <div class="episode-stats">
+        <p><strong>Starters:</strong> <span id="starter-stats">0/0</span></p>
+        <p><strong>Bonuses:</strong> <span id="bonus-stats">0/0</span></p>
+      </div>
+      <div class="primary-actions">
+        <button id="starter-button" onclick="addPoints('starter')">+10 Starter</button>
+        <button id="bonus-button" onclick="addPoints('bonus')">+5 Bonus</button>
+        <button id="next-question-button" onclick="nextQuestion()">Next Question</button>
+        <button onclick="nextDeadStarter()">Next (Dead Starter)</button>
+      </div>
+
+      <div class="secondary-actions">
+        <button onclick="undo()">Undo</button>
+        <button onclick="startNewEpisode()">Start New Episode</button>
+      </div>
+    </section>
+
+    <!-- 📝 Submit Episode -->
+    <section class="card">
+      <h2>Submit Episode</h2>
+      <div class="input-row">
+        <input type="number" id="season-input" placeholder="Season">
+        <input type="number" id="episode-input" placeholder="Episode">
+        <input type="date" id="date-input">
+        <button onclick="submitScore()">Submit</button>
+      </div>
+    </section>
+
+    <!-- 📊 Chart -->
+    <section class="card">
+      <h2>Score Chart</h2>
+      <canvas id="score-chart"></canvas>
+    </section>
+
+    <!-- 📜 Score History -->
+       <section class="card">
+      <h2>Score History</h2>
+    
+      <div class="filters-inline">
+        <label>Season:
+          <select id="season-filter" onchange="filterTable()">
+            <option value="">All</option>
+          </select>
+        </label>
+        <label>Episode:
+          <select id="episode-filter" onchange="filterTable()">
+            <option value="">All</option>
+          </select>
+        </label>
+      </div>
+    
+      <!-- 👇 Wrap the table in this div -->
+      <div class="table-wrapper">
+        <table id="score-history">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0, this)" data-order="asc">Season <span style="font-size: 0.8em;">▲▼</span></th>
+              <th onclick="sortTable(1, this)" data-order="asc">Episode <span style="font-size: 0.8em;">▲▼</span></th>
+              <th onclick="sortTable(2, this)" data-order="asc">Date <span style="font-size: 0.8em;">▲▼</span></th>
+              <th onclick="sortTable(3, this)" data-order="asc">Score <span style="font-size: 0.8em;">▲▼</span></th>
+              <th onclick="sortTable(4, this)" data-order="asc">PPQ <span style="font-size: 0.8em;">▲▼</span></th>
+              <th>Starters</th>
+              <th>Bonuses</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+    
+     <!-- 📊 Analysis Section -->
+    <section class="card">
+      <h2>Season Analysis</h2>
+    
+      <label for="analysis-season-select">Select a season:</label>
+      <select id="analysis-season-select" onchange="renderSeasonAnalysis()">
+        <option value="">-- Choose --</option>
+        <!-- JS will populate options -->
+      </select>
+    
+      <div id="season-analysis-results" style="margin-top: 20px;"></div>
+      <canvas id="season-ppq-chart" height="200"></canvas>
+
+<div id="chart-toggle-wrapper" style="display: none; margin-top: 10px; display: flex; align-items: center; gap: 10px;">
+  <span id="toggle-label-text" style="font-size: 14px; font-weight: bold;">PPQ</span>
+  <label class="toggle-label">
+    <input type="checkbox" id="chart-toggle-checkbox" onchange="toggleAnalysisChart()" />
+    <span class="toggle-slider"></span>
+  </label>
+</div>
+
+    </section>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
+

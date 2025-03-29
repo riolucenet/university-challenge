@@ -1,0 +1,508 @@
+/* ═══════════ 1. Base Layout ═══════════ */
+body {
+  font-family: 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px;
+}
+
+/* ═══════════ 2. Page Header & Theme Toggle ═══════════ */
+.page-header {
+  text-align: center;
+  padding-top: 20px;
+  margin: 0 0 60px 0;
+}
+
+.page-header h1 {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0;
+  transition: color 0.3s ease;
+}
+
+.top-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -40px;
+  margin-bottom: 20px;
+}
+
+.theme-toggle {
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 6px;
+  background-color: #ddd;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.theme-toggle:hover {
+  background-color: #bbb;
+}
+
+/* ═══════════ 3. Cards & Sections ═══════════ */
+.card {
+  background-color: white;
+  border-radius: 14px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-top: 0;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+/* ═══════════ 4. Score Panel + Episode States ═══════════ */
+.score-panel {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  padding: 16px 24px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.score-item {
+  flex: 1 1 30%;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.score-label {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.score-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #222;
+}
+
+.episode-stats {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+/* ═══════════ 5. Action Buttons ═══════════ */
+button {
+  font-family: 'Helvetica', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff6f47;
+}
+
+.primary-actions,
+.secondary-actions,
+.button-row,
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.primary-actions button {
+  background-color: #00796b;
+  color: white;
+}
+
+.primary-actions button:nth-child(4) {
+  background-color: #999;
+  color: white;
+}
+
+.secondary-actions button {
+  background-color: #ccc;
+  color: #333;
+}
+
+/* ═══════════ 6. Form Inputs ═══════════ */
+input[type="number"],
+input[type="date"] {
+  width: 160px;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #ffffff;
+  margin: 5px;
+}
+
+/* ═══════════ 7. Filters (Table Controls) ═══════════ */
+.filters-inline {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.filters-inline label {
+  font-size: 16px;
+}
+
+.filters-inline select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+/* ═══════════ 8. Table Styling ═══════════ */
+#score-history {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#score-history th,
+#score-history td {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  text-align: center;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+#score-history thead th {
+  background-color: #ececec;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#score-history thead th:hover {
+  background-color: #dedede;
+}
+
+/* Allow scrolling inside the card if table overflows */
+.card {
+  overflow-x: auto;
+}
+
+/* Wrap the table in a scrollable container */
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* Let the table grow naturally */
+#score-history {
+  min-width: 800px; /* or 1000px if you need more space */
+  border-collapse: collapse;
+}
+
+/* ═══════════ 9. Chart Area ═══════════ */
+#score-chart {
+  width: 100%;
+  height: 400px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+/*========== Toggle ======*/
+.toggle-label {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.toggle-label input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #bbb;
+  border-radius: 34px;
+  transition: 0.3s;
+}
+
+.toggle-slider:before {
+  content: "";
+  position: absolute;
+  height: 14px; width: 14px;
+  left: 3px; bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.toggle-label input:checked + .toggle-slider {
+  background-color: var(--toggle-on-color, #4caf50);
+}
+
+.toggle-label input:checked + .toggle-slider:before {
+  transform: translateX(20px);
+}
+
+#toggle-label-text {
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#season-ppq-chart {
+  padding-top: 30px; /* 👈 adds space below the chart */
+}
+
+/* ═══════════ 10. Theme: Peach ═══════════ */
+body.peach-theme {
+  background-color: #faf3e0;
+  color: #4a4a4a;
+}
+
+button.peach-theme {
+  background-color: #ff9e80;
+  color: white;
+}
+
+button.peach-theme:hover {
+  background-color: #ff6f47;
+}
+
+table.peach-theme {
+  background-color: #fff6f1;
+}
+
+th.peach-theme,
+td.peach-theme {
+  background-color: #fef7f4;
+}
+
+body.peach-theme #score-history thead th {
+  background-color: #ffd8c2;
+  color: #4a2c1a;
+}
+
+body.peach-theme .page-header h1 {
+  color: #e95b3f;
+}
+
+body.peach-theme {
+  --toggle-on-color: #ff7043;
+}
+
+/* ═══════════ 11. Theme: Grey-Orange ═══════════ */
+body.grey-orange-theme {
+  background-color: #f0f0f0;
+  color: #333333;
+}
+
+button.grey-orange-theme {
+  background-color: #ff6f47;
+  color: white;
+}
+
+button.grey-orange-theme:hover {
+  background-color: #e65c3e;
+}
+
+table.grey-orange-theme {
+  background-color: #f9f9f9;
+}
+
+th.grey-orange-theme,
+td.grey-orange-theme {
+  background-color: #f0f0f0;
+}
+
+body.grey-orange-theme #score-history thead th {
+  background-color: #e0e0e0;
+  color: #222;
+}
+
+body.grey-orange-theme .page-header h1 {
+  color: #cc4c1e;
+}
+
+body.grey-orange-theme {
+  --toggle-on-color: #ff9800;
+}
+
+/* ═══════════ 12. Theme: Aquamarine ═══════════ */
+body.aquamarine-theme {
+  background-color: #e0f7fa;
+  color: #00796b;
+}
+
+button.aquamarine-theme {
+  background-color: #00796b;
+  color: white;
+}
+
+button.aquamarine-theme:hover {
+  background-color: #004d40;
+}
+
+table.aquamarine-theme {
+  background-color: #ffffff;
+}
+
+th.aquamarine-theme,
+td.aquamarine-theme {
+  background-color: #e0f7fa;
+}
+
+body.aquamarine-theme #score-history thead th {
+  background-color: #b2ebf2;
+  color: #004d40;
+}
+
+body.aquamarine-theme .page-header h1 {
+  color: #00796b;
+}
+
+body.aquamarine-theme {
+  --toggle-on-color: #00796b;
+}
+
+/* ═══════════ 13. Theme: Lavender ═══════════ */
+body.lavender-theme {
+  background-color: #f5f0ff;
+  color: #4a3b6b;
+}
+
+button.lavender-theme {
+  background-color: #b39ddb;
+  color: white;
+}
+
+button.lavender-theme:hover {
+  background-color: #9575cd;
+}
+
+table.lavender-theme {
+  background-color: #f8f5fc;
+}
+
+th.lavender-theme, td.lavender-theme {
+  background-color: #eee6fa;
+}
+
+body.lavender-theme #score-history thead th {
+  background-color: #eee6fa;  /* or whatever matches your theme */
+  color: #6a1b9a;
+}
+
+body.lavender-theme .page-header h1 {
+  color: #6a1b9a;
+}
+
+body.lavender-theme {
+  --toggle-on-color:  #9575cd;
+}
+
+/* ═══════════ 14. Theme: Retro Pop ═══════════ */
+body.retro-pop-theme {
+  background-color: #fffaf3;
+  color: #1e1e2f;
+}
+
+button.retro-pop-theme {
+  background-color: #ffb703; /* mustard */
+  color: #1e1e2f;
+}
+
+button.retro-pop-theme:hover {
+  background-color: #faa307;
+}
+
+table.retro-pop-theme {
+  background-color: #fff6e5;
+}
+
+body.retro-pop-theme #score-history thead th {
+  background-color: #eae2b7;
+  color: #1e1e2f;
+}
+
+body.retro-pop-theme td {
+  background-color: #fff8ec;
+}
+
+body.retro-pop-theme .page-header h1 {
+  color: #d62828;
+}
+
+body.retro-pop-theme {
+  --toggle-on-color: #e91e63;
+}
+
+/* ═══════════ 15. Theme: Japan ═══════════ */
+body.japanese-theme {
+  background-color: #fefefe;
+  color: #111;
+}
+
+button.japanese-theme {
+  background-color: #d00000; /* classic red */
+  color: #fff;
+}
+
+button.japanese-theme:hover {
+  background-color: #9a0000;
+}
+
+table.japanese-theme {
+  background-color: #fff;
+}
+
+body.japanese-theme #score-history thead th {
+  background-color: #f8f8f8;
+  color: #111;
+}
+
+body.japanese-theme td {
+  background-color: #ffffff;
+}
+
+body.japanese-theme .page-header h1 {
+  color: #d00000;
+}
+
+body.japanese-graphic-theme {
+  --toggle-on-color: #c62828;
+}
+
+
