@@ -254,26 +254,32 @@ function submitScore() {
   }
 }
 
-// Reset live game state for a new episode
 function startNewEpisode() {
-  currentScore = 0;
-  currentQuestion = 1;
-  currentEpisodePoints = 0;
-  currentEpisodeQuestions = 0;
-  currentEpisodeData = [];
-  undoStack = [];
+  // Ask for confirmation before resetting
+  const confirmReset = confirm("Are you sure you want to start a new episode? This will reset your current score.");
 
-  // ✅ Reset stats
-  startersHeard = 0;
-  startersCorrect = 0;
-  bonusesHeard = 0;
-  bonusesCorrect = 0;
-  starterUsedThisQuestion = false;
-  bonusCountThisQuestion = 0;
+  // If the user confirms, reset the episode
+  if (confirmReset) {
+    // Reset the live game state for a new episode
+    currentScore = 0;
+    currentQuestion = 1;
+    currentEpisodePoints = 0;
+    currentEpisodeQuestions = 0;
+    currentEpisodeData = []; // Clear the current episode data
+    startersUsedThisQuestion = false;
+    bonusCountThisQuestion = 0;
 
-  // Update UI
-  updateUI();
-  updateChart();
+    // Update the live score display and chart
+    document.getElementById("current-score").textContent = currentScore;
+    document.getElementById("current-question").textContent = currentQuestion;
+    document.getElementById("points-per-question").textContent = '0.00';  // Reset live PPQ to 0
+
+    updateChart();  // Clear the chart
+
+    console.log("New episode started, all data reset!");
+  } else {
+    console.log("New episode start cancelled. Your score remains intact.");
+  }
 }
 
 // Delete a historic episode from scoreHistory
